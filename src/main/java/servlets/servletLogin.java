@@ -37,7 +37,7 @@ public class servletLogin extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String usuario = request.getParameter("usuario");
             String contra = request.getParameter("contra");
-            if(usuario.contains("admin") && contra.contains("1234")){
+            if(usuario.equals("admin") && contra.equals("1234")){
                 Cookie c = new Cookie("usuario_logueado", "admin");
                 c.setMaxAge(60);
                 response.addCookie(c);

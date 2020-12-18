@@ -36,12 +36,11 @@ public class servletPrincipal1 extends HttpServlet {
         try {
             /* TODO output your page here. You may use following sample code. */
             Cookie cookies[] = request.getCookies();
+            String mensaje = "";
             if (cookies != null){
                 for(int i=0;i<cookies.length;i++){   
-                    if(cookies[i].getValue().equals("admin") && cookies[i].getName().equals("usuario_logueado") ){
-                        out.println("<h1>Esta usted logueado como admin</h1>");
-                    }else{
-                        out.println("<a href=\"index.jsp\">Debe hacer login</a>");
+                    if(cookies[i].getName().equals("usuario_logueado") ){
+                       mensaje = cookies[i].getValue();
                     }
                 } 
             }
@@ -53,6 +52,12 @@ public class servletPrincipal1 extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet servletPrincipal1 at " + request.getContextPath () + "</h1>");
+            if(mensaje.equalsIgnoreCase("admin")){
+                out.println("<h1>Usuario logeado como: " + mensaje + "</h1>");
+            } else {
+                out.println("<h1>No estas logeado como admin</h1>");
+                out.println("<a href=\"inedx.jsp\" >Debe hacer login</a>");
+            }
             out.println("</body>");
             out.println("</html>");
         } finally {
